@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+  Layout: editorial 12-column grid; light "paper" chapters with dark ink scenes
+  for the cover, the knowledge agent and the close. Brand values come from
+  src/config/brand.ts; the fallbacks below only cover the first paint.
+*/
+:root {
+  --c-paper: 246 244 241;
+  --c-ink: 20 20 24;
+  --c-signal: 244 48 152;
+  --font-sans: 'Google Sans Flex', 'Google Sans', 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
+  color-scheme: light;
+}
+
+html,
+body {
+  background: rgb(var(--c-paper));
+  color: rgb(var(--c-ink));
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: rgb(var(--c-signal) / 0.25);
+}
+
+.flow-line {
+  stroke-dasharray: 3 5;
+  animation: flow 1.2s linear infinite;
+}
+@keyframes flow {
+  to {
+    stroke-dashoffset: -16;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flow-line {
+    animation: none;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
